@@ -1,4 +1,7 @@
 terraform {
+  # Add this line to satisfy the linter and enforce stability
+  required_version = ">= 1.5.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -13,7 +16,7 @@ provider "aws" {
 
 # 1. Define the S3 Bucket
 resource "aws_s3_bucket" "resume_website" {
-  bucket = "yarin-rene-cloud-resume-2026" 
+  bucket = "yarin-rene-cloud-resume-2026"
 
   tags = {
     Project     = "Cloud Resume Challenge"
@@ -48,7 +51,7 @@ resource "aws_s3_bucket_public_access_block" "resume_website_access" {
 # 4. Attach Bucket Policy for Public Read Access
 resource "aws_s3_bucket_policy" "resume_website_policy" {
   bucket = aws_s3_bucket.resume_website.id
-  
+
   depends_on = [aws_s3_bucket_public_access_block.resume_website_access]
 
   policy = jsonencode({
