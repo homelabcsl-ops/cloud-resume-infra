@@ -1,4 +1,7 @@
 terraform {
+  # Add this line to satisfy the linter and enforce stability
+  required_version = ">= 1.5.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
