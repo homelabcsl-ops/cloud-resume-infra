@@ -67,3 +67,9 @@ resource "aws_s3_bucket_policy" "resume_website_policy" {
     ]
   })
 }
+
+# 5. Output the Website URL
+output "website_url" {
+  description = "The public URL of the Cloud Resume website"
+  value       = aws_s3_bucket_website_configuration.resume_website_config.website_endpoint
+}
